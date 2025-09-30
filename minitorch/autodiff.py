@@ -28,7 +28,7 @@ def central_difference(f: Any, *vals: Any, arg: int = 0, epsilon: float = 1e-6) 
     vals_plus[arg] += epsilon
     vals_minus = [v for v in vals]
     vals_minus[arg] -= epsilon
-    return (f(vals_plus) - f(vals_minus)) / (2 * epsilon)
+    return (f(*vals_plus) - f(*vals_minus)) / (2 * epsilon)
 
 
 variable_count = 1

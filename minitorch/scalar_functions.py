@@ -104,12 +104,12 @@ class Mul(ScalarFunction):
     @staticmethod
     def forward(ctx: Context, a: float, b: float) -> float:
         ctx.save_for_backward(a, b)
-        return a * b
+        return float(a * b)
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> Tuple[float, float]:
         a, b = ctx.saved_values
-        return d_output * b, d_output * a
+        return float(d_output * b), float(d_output * a)
 
 
 class Inv(ScalarFunction):
@@ -118,12 +118,12 @@ class Inv(ScalarFunction):
     @staticmethod
     def forward(ctx: Context, a: float) -> float:
         ctx.save_for_backward(a)
-        return 1 / a
+        return float(1 / a)
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
         (a,) = ctx.saved_values
-        return - d_output / (a ** 2)
+        return float(- d_output / (a ** 2))
 
 
 class Neg(ScalarFunction):
@@ -131,11 +131,11 @@ class Neg(ScalarFunction):
 
     @staticmethod
     def forward(ctx: Context, a: float) -> float:
-        return - a
+        return float(- a)
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
-        return - d_output
+        return float(- d_output)
 
 
 class Sigmoid(ScalarFunction):
@@ -145,12 +145,12 @@ class Sigmoid(ScalarFunction):
     def forward(ctx: Context, a: float) -> float:
         result = operators.sigmoid(a)
         ctx.save_for_backward(result)
-        return result
+        return float(result)
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
         (a,) = ctx.saved_values
-        return d_output * a * (1 - a)
+        return float(d_output * a * (1 - a))
 
 
 class ReLU(ScalarFunction):
@@ -159,12 +159,12 @@ class ReLU(ScalarFunction):
     @staticmethod
     def forward(ctx: Context, a: float) -> float:
         ctx.save_for_backward(a)
-        return operators.relu(a)
+        return float(operators.relu(a))
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
         (a,) = ctx.saved_values
-        return d_output if a > 0 else 0.0
+        return float(d_output) if a > 0 else 0.0
 
 
 class Exp(ScalarFunction):
@@ -174,12 +174,12 @@ class Exp(ScalarFunction):
     def forward(ctx: Context, a: float) -> float:
         res = operators.exp(a)
         ctx.save_for_backward(res)
-        return res
+        return float(res)
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
         (a,) = ctx.saved_values
-        return d_output * a
+        return float(d_output * a)
 
 
 
