@@ -1,6 +1,7 @@
 """Collection of the core mathematical operators used throughout the code base."""
 
 import math
+from typing import Callable, Iterable
 
 # ## Task 0.1
 
@@ -33,70 +34,70 @@ import math
 
 # TODO: Implement for Task 0.1.
 
-def mul(a, b):
+def mul(a: float, b: float) -> float:
     return a * b
 
 
-def id(a):
+def id(a: float) -> float:
     return a
 
 
-def add(a, b):
+def add(a: float, b: float) -> float:
     return a + b
 
 
-def neg(a):
+def neg(a: float) -> float:
     return -a
 
 
-def lt(a, b):
+def lt(a: float, b: float) -> float:
     return a < b
 
 
-def eq(a, b):
+def eq(a: float, b: float) -> float:
     return a == b
 
 
-def max(a, b):
+def max(a: float, b: float) -> float:
     return a if a > b else b
 
 
-def is_close(a, b):
+def is_close(a: float, b: float) -> float:
     return abs(a - b) < 0.01
 
 
-def sigmoid(a):
+def sigmoid(a: float) -> float:
     if a >= 0:
         return 1 / (1 + math.exp(-a))
     else:
         return math.exp(a) / (1 + math.exp(a))
 
 
-def relu(a):
+def relu(a: float) -> float:
     return max(0, a)
 
 
-def log(a):
+def log(a: float) -> float:
     return math.log(a)
 
 
-def exp(a):
+def exp(a: float) -> float:
     return math.exp(a)
 
 
-def inv(a):
+def inv(a: float) -> float:
     return 1 / a
 
 
-def log_back(a, b):
+def log_back(a: float, b: float) -> float:
     return b / a
 
 
-def inv_back(a, b):
+def inv_back(a: float, b: float) -> float:
     return -b / (a ** 2)
 
 
-def relu_back(a, b):
+def relu_back(a: float, b: float) -> float:
     return b * (a > 0)
 
 
@@ -115,18 +116,18 @@ def relu_back(a, b):
 # - sum: sum lists
 # - prod: take the product of lists
 
-def map(iter, func):
+def map(iter: Iterable, func: Callable) -> Iterable:
     return [func(it) for it in iter]
 
 
-def zipWith(iter1, iter2, func):
+def zipWith(iter1: Iterable, iter2: Iterable, func: Callable) -> Iterable:
     res = list()
     for i in range(len(iter1)):
         res.append(func(iter1[i], iter2[i]))
     return res
 
 
-def reduce(iter, func):
+def reduce(iter: Iterable, func: Callable) -> Iterable:
     if len(iter) == 1:
         return iter[0]
     res = iter[0]
@@ -135,21 +136,21 @@ def reduce(iter, func):
     return res
 
 
-def negList(l):
+def negList(l: Callable) -> Iterable:
     return map(l, neg)
 
 
-def addLists(l1, l2):
+def addLists(l1: Callable, l2: Callable) -> Iterable:
     return zipWith(l1, l2, add)
 
 
-def sum(l):
+def sum(l: Callable) -> Iterable:
     if len(l) == 0:
         return 0
     return reduce(l, add)
 
 
-def prod(l):
+def prod(l: Callable) -> Iterable:
     if len(l) == 0:
         return 1
     return reduce(l, mul)

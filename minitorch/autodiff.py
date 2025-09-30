@@ -1,7 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, Iterable, List, Tuple
-
-from copy import copy
+from typing import Any, Iterable, Tuple
 
 from typing_extensions import Protocol
 
