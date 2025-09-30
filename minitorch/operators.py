@@ -127,7 +127,7 @@ def zipWith(iter1: List[float], iter2: List[float], func: Callable[[float, float
     return res
 
 
-def reduce(iter: List[float], func: Callable[[float, float], float]) -> List[float]:
+def reduce(iter: List[float], func: Callable[[float, float], float]) -> float:
     if len(iter) == 1:
         return iter[0]
     res = iter[0]
@@ -144,13 +144,13 @@ def addLists(l1: List[float], l2: List[float]) -> List[float]:
     return zipWith(l1, l2, add)
 
 
-def sum(l: List[float]) -> List[float]:
+def sum(l: List[float]) -> float:
     if len(l) == 0:
         return 0
     return reduce(l, add)
 
 
-def prod(l: List[float]) -> List[float]:
+def prod(l: List[float]) -> float:
     if len(l) == 0:
         return 1
     return reduce(l, mul)

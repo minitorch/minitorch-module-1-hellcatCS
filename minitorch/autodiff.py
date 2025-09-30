@@ -54,7 +54,7 @@ class Variable(Protocol):
         pass
 
 
-def search(v: Variable, res: List[Variable], vis: set[Variable]) -> None:
+def search(v: Variable, res: List[Variable], vis: set[int]) -> None:
     if v.unique_id in vis:
         return None
     vis.add(v.unique_id)
@@ -75,7 +75,7 @@ def topological_sort(variable: Variable) -> List[Variable]:
     Returns:
         Non-constant Variables in topological order starting from the right.
     """
-    vis: set[Variable] = set()
+    vis: set[int] = set()
     res: list[Variable] = []
     search(variable, res, vis)
     return res
