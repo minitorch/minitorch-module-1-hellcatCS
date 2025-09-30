@@ -1,7 +1,7 @@
 """Collection of the core mathematical operators used throughout the code base."""
 
 import math
-from typing import Callable, Iterable
+from typing import Callable, List
 
 # ## Task 0.1
 
@@ -116,18 +116,18 @@ def relu_back(a: float, b: float) -> float:
 # - sum: sum lists
 # - prod: take the product of lists
 
-def map(iter: Iterable[float], func: Callable[[float], float]) -> Iterable[float]:
+def map(iter: List[float], func: Callable[[float], float]) -> List[float]:
     return [func(it) for it in iter]
 
 
-def zipWith(iter1: Iterable[float], iter2: Iterable, func: Callable[[float], float]) -> Iterable[float]:
+def zipWith(iter1: List[float], iter2: List[float], func: Callable[[float], float]) -> List[float]:
     res = list()
     for i in range(len(iter1)):
         res.append(func(iter1[i], iter2[i]))
     return res
 
 
-def reduce(iter: Iterable[float], func: Callable[[float], float]) -> Iterable[float]:
+def reduce(iter: List[float], func: Callable[[float], float]) -> List[float]:
     if len(iter) == 1:
         return iter[0]
     res = iter[0]
@@ -136,21 +136,21 @@ def reduce(iter: Iterable[float], func: Callable[[float], float]) -> Iterable[fl
     return res
 
 
-def negList(l: Iterable[float]) -> Iterable[float]:
+def negList(l: List[float]) -> List[float]:
     return map(l, neg)
 
 
-def addLists(l1: Iterable[float], l2: Iterable[float]) -> Iterable[float]:
+def addLists(l1: List[float], l2: List[float]) -> List[float]:
     return zipWith(l1, l2, add)
 
 
-def sum(l: Iterable[float]) -> Iterable[float]:
+def sum(l: List[float]) -> List[float]:
     if len(l) == 0:
         return 0
     return reduce(l, add)
 
 
-def prod(l: Iterable[float]) -> Iterable[float]:
+def prod(l: List[float]) -> List[float]:
     if len(l) == 0:
         return 1
     return reduce(l, mul)

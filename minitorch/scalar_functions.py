@@ -182,7 +182,6 @@ class Exp(ScalarFunction):
         return float(d_output * a)
 
 
-
 class LT(ScalarFunction):
     "Less-than function $f(x) =$ 1.0 if x is less than y else 0.0"
 
