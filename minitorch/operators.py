@@ -77,11 +77,11 @@ def relu(a):
 
 
 def log(a):
-    return log(a)
+    return math.log(a)
 
 
 def exp(a):
-    return exp(a)
+    return math.exp(a)
 
 
 def inv(a):
