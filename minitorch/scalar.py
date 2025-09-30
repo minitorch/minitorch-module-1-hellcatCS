@@ -167,7 +167,7 @@ class Scalar:
         variables = h.inputs
         result = []
         for v, sc_grad in zip(variables, grad):
-            if not v.requires_grad:
+            if not isinstance(v, Scalar):
                 continue
             result.append((v, sc_grad))
         return result
