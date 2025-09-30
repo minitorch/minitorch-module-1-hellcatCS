@@ -75,7 +75,7 @@ def topological_sort(variable: Variable) -> Iterable[Variable]:
     Returns:
         Non-constant Variables in topological order starting from the right.
     """
-    vis = set()
+    vis: set[Variable] = set()
     res: list[Variable] = []
     search(variable, res, vis)
     return res
@@ -92,8 +92,8 @@ def backpropagate(variable: Variable, deriv: Any) -> None:
 
     No return. Should write to its results to the derivative values of each leaf through `accumulate_derivative`.
     """
-    grad = {}
-    vars = reversed(topological_sort(variable))
+    grad: dict[int, Variable] = {}
+    vars = topological_sort(variable)[::-1]
     grad[variable.unique_id] = deriv
     for v in vars:
         v_grad = grad[v.unique_id]

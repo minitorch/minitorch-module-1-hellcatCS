@@ -116,18 +116,18 @@ def relu_back(a: float, b: float) -> float:
 # - sum: sum lists
 # - prod: take the product of lists
 
-def map(iter: Iterable, func: Callable) -> Iterable:
+def map(iter: Iterable[float], func: Callable[[float], float]) -> Iterable[float]:
     return [func(it) for it in iter]
 
 
-def zipWith(iter1: Iterable, iter2: Iterable, func: Callable) -> Iterable:
+def zipWith(iter1: Iterable[float], iter2: Iterable, func: Callable[[float], float]) -> Iterable[float]:
     res = list()
     for i in range(len(iter1)):
         res.append(func(iter1[i], iter2[i]))
     return res
 
 
-def reduce(iter: Iterable, func: Callable) -> Iterable:
+def reduce(iter: Iterable[float], func: Callable[[float], float]) -> Iterable[float]:
     if len(iter) == 1:
         return iter[0]
     res = iter[0]
@@ -136,21 +136,21 @@ def reduce(iter: Iterable, func: Callable) -> Iterable:
     return res
 
 
-def negList(l: Callable) -> Iterable:
+def negList(l: Iterable[float]) -> Iterable[float]:
     return map(l, neg)
 
 
-def addLists(l1: Callable, l2: Callable) -> Iterable:
+def addLists(l1: Iterable[float], l2: Iterable[float]) -> Iterable[float]:
     return zipWith(l1, l2, add)
 
 
-def sum(l: Callable) -> Iterable:
+def sum(l: Iterable[float]) -> Iterable[float]:
     if len(l) == 0:
         return 0
     return reduce(l, add)
 
 
-def prod(l: Callable) -> Iterable:
+def prod(l: Iterable[float]) -> Iterable[float]:
     if len(l) == 0:
         return 1
     return reduce(l, mul)
