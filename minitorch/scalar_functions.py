@@ -188,11 +188,11 @@ class LT(ScalarFunction):
 
     @staticmethod
     def forward(ctx: Context, a: float, b: float) -> float:
-        return 1 if a < b else 0
+        return 1. if a < b else 0.
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> Tuple[float, float]:
-        return 0, 0
+        return 0., 0.
 
 
 class EQ(ScalarFunction):
@@ -200,8 +200,8 @@ class EQ(ScalarFunction):
 
     @staticmethod
     def forward(ctx: Context, a: float, b: float) -> float:
-        return 1 if a == b else 0
+        return 1. if a == b else 0.
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> Tuple[float, float]:
-        return 0, 0
+        return 0., 0.
