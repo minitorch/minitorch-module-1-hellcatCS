@@ -120,14 +120,14 @@ def map(iter: List[float], func: Callable[[float], float]) -> List[float]:
     return [func(it) for it in iter]
 
 
-def zipWith(iter1: List[float], iter2: List[float], func: Callable[[float], float]) -> List[float]:
+def zipWith(iter1: List[float], iter2: List[float], func: Callable[[float, float], float]) -> List[float]:
     res = list()
     for i in range(len(iter1)):
         res.append(func(iter1[i], iter2[i]))
     return res
 
 
-def reduce(iter: List[float], func: Callable[[float], float]) -> List[float]:
+def reduce(iter: List[float], func: Callable[[float, float], float]) -> List[float]:
     if len(iter) == 1:
         return iter[0]
     res = iter[0]
